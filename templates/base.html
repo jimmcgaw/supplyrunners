@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Supply Runners</title>
+    <link rel="stylesheet" href="/static/node_modules/foundation-sites/dist/css/foundation.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x">
+            <nav>
+                <ul class="menu align-right">
+                    <li>
+                        <a href="/" class="href">Home</a>
+                        <a href="/how" class="href">How it works</a>
+                        <a href="/about" class="href">About</a>
+                        <a href="/login" class="href">Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="grid-x grid-padding-x">
+            <div class="cell medium-6 large-2 side"></div>
+            <div class="cell medium-6 large-8 content">
+                <header>
+                    <h1>Supply Runners</h1>
+                    <em>Salus populi suprema lex</em>
+                </header>
+                <div>
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <div class="cell medium-6 large-2 side"></div>
+        </div>
+
+    </div>
+</body>
+</html>

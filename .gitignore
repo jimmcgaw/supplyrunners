@@ -1,0 +1,5 @@
+supplyrunners/local_settings.py
+venv
+.vscode/
+static/node_modules
+**/*/__pycache__
