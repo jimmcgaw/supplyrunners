@@ -23,9 +23,6 @@ except:
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mfd&&r=p7bk1nntq&5p5l&hd3%=8zg2-8dqh4#283=q^xs37g0'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -43,12 +40,31 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third-party stuff
     'social_django',
+    "sslserver",
     # our custom apps
     'world',
 ]
 
 # for social_django app
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'locations'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link'] # add this
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       # add this
+  'fields': 'id, name, email, picture.type(large), link'
+}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
+    ('name', 'name'),
+    ('email', 'email'),
+    ('picture', 'picture'),
+    ('link', 'profile_url'),
+]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,8 +77,8 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )

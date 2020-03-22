@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
+{% block topscripts %}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=157840588713328&autoLogAppEvents=1"></script>
+{% endblock %}
+
 {% block content %}
-    <h1>Login</h1>
+
+<h1>Login</h1>
+
+<div class="expanded button-group">
+    <a href="{% url 'social:begin' 'facebook' %}" class="button">Login with Facebook</a>
+</div>
+
 {% endblock %}

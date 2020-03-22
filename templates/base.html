@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
+    {% block topscripts %}{% endblock %}
     <div class="grid-container fluid">
         <div class="grid-x grid-padding-x">
             <nav>
@@ -17,15 +18,19 @@
                         <a href="/" class="href">Home</a>
                         <a href="/how" class="href">How it works</a>
                         <a href="/about" class="href">About</a>
-                        <a href="/login" class="href">Login</a>
+                        {% if user.is_authenticated %}
+                            <a href="/logout" class="href">Logout</a>
+                        {% else %}
+                            <a href="/user/login" class="href">Login</a>
+                        {% endif %}
                     </li>
                 </ul>
             </nav>
         </div>
 
         <div class="grid-x grid-padding-x">
-            <div class="cell medium-6 large-2 side"></div>
-            <div class="cell medium-6 large-8 content">
+            <div class="cell medium-0 large-2 side"></div>
+            <div class="cell medium-12 large-8 content">
                 <header>
                     <h1>Supply Runners</h1>
                     <em>Salus populi suprema lex</em>
@@ -34,9 +39,11 @@
                     {% block content %}{% endblock %}
                 </div>
             </div>
-            <div class="cell medium-6 large-2 side"></div>
+            <div class="cell medium-0 large-2 side"></div>
         </div>
 
     </div>
+    <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>
+    {% block bottomscripts %}{% endblock %}
 </body>
 </html>

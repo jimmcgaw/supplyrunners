@@ -3,3 +3,4 @@ venv
 .vscode/
 static/node_modules
 **/*/__pycache__
+cert

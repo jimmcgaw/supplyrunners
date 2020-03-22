@@ -14,5 +14,11 @@ dbshell:
 dev:
 	@python manage.py runserver
 
+ssl:
+	@python manage.py runsslserver
+
+sslcert:
+	@python manage.py runsslserver --certificate cert/supplyrunners.dev.crt --key cert/supplyrunners.dev.key
+
 assets:
 	@python manage.py collectstatic
