@@ -4,9 +4,8 @@
     <h1>Locations</h1>
     <div class="grid-x grid-padding-x grid-margin-y">
         <div class="cell large-6 medium-6">
-            <div id="map" style="width: 400px; height: 400px;"></div>
-        </div>
-        <div class="cell large-6 medium-6">
+            <div id="map" style="height: 400px;"></div>
+            <hr>
             <form action="/locations/search" id="search">
                 <div class="input-group">
                     <label for="query" class="input-group-label">Search</label>
@@ -18,11 +17,26 @@
             </form>
             <div id="results"></div>
         </div>
+        <div class="cell large-6 medium-6">
+            <h2>My Locations</h2>
+            <div id="my-locations"></div>
+        </div>
     </div>
+
+    <template id="locationtemplate">
+        <div class="location">
+            <div class="name"></div>
+            <div class="details">
+                <span class="address"></span>
+                <span class="place_id"></span>
+            </div>
+        </div>
+    </template>
     
     {% block bottomscripts %}
-        <script src="/static/js/locations.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key={{ map_key }}&callback=initMap" async defer></script>
+    <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/static/js/locations.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ map_key }}&callback=initMap" async defer></script>
     {% endblock %}
 
 {% endblock %}

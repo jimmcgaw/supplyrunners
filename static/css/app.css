@@ -1,7 +1,22 @@
-h1, h2, h3, h4, h5, body {
-    font-family: 'Open Sans', sans-serif;
+* {
+    font-family: 'Baloo 2', cursive;
 }
 
-header h1 {
-    font-size: 3em;
+.grad {
+    background: linear-gradient(135deg, #0061f2, #6900c7);
+}
+
+.card-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 64px;
+    color: white;
+    font-size: 30px;
+    margin: 0 auto;
+}
+
+.nav-item img {
+    height: 30px;
 }

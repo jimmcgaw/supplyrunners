@@ -13,7 +13,8 @@
   "author": "Jim McGaw",
   "license": "MIT",
   "dependencies": {
-    "foundation-sites": "^6.6.1",
+    "bootstrap": "^4.4.1",
+    "ionicons": "^5.0.1",
     "jquery": "^3.4.1"
   }
 }
