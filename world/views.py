@@ -9,7 +9,7 @@ from .places import find_places
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html', {'test_var': settings.HEROKU_VAR})
+    return render(request, 'index.html', {'test_var': settings.VAR_FOR_TESTING})
 
 
 def about(request):

@@ -166,7 +166,7 @@ PUBLIC_ROOT = os.path.join(BASE_DIR, 'public')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-HEROKU_VAR = 'local'
+VAR_FOR_TESTING = 'local'
 
 
 
