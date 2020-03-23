@@ -1,0 +1,40 @@
+{% load usertags %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Volunteer Shopping</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/about/">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/feedback/">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resources/">Resources</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/profile/">My Profile</a>
+                </li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout/">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<img src="{{ request.user|profile_pic_url }}" alt="">
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/login/">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

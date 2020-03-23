@@ -23,6 +23,9 @@ urlpatterns = [
     path('', include('world.urls')),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path('social-auth/', include('social_django.urls', namespace="social")),
-    path('user/', include('django.contrib.auth.urls')),
+    path('user/', include(('django.contrib.auth.urls', 'user'), namespace="user")),
     path('admin/', admin.site.urls),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.PUBLIC_ROOT)

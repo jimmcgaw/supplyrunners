@@ -1,6 +1,6 @@
 supplyrunners/local_settings.py
 venv
 .vscode/
-static/node_modules
+**/*/node_modules
 **/*/__pycache__
 cert

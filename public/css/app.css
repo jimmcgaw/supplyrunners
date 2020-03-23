@@ -1,0 +1,64 @@
+* {
+    font-family: 'Baloo 2', cursive;
+}
+
+body {
+    color: #333;
+}
+
+a.btn {
+    border-radius: 50px;
+    padding: .5rem 2rem;
+    transition-duration: 0.2s;
+    transition-property: transform;
+}
+
+a.btn:hover {
+    transform: translate(0px, -3px);
+}
+
+.site-content {
+    margin-top: 75px;
+}
+
+header .container {
+    padding-top: 75px;
+}
+
+header .resources {
+    background-color: white;
+    opacity: 0.65;
+}
+
+header .homebox {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+header a.btn {
+    background-color: #00BA94;
+    box-shadow: #333;
+}
+
+header a.btn:hover {
+    background-color: #00BA94;
+}
+
+.grad {
+    background: linear-gradient(135deg, #0061f2, #6900c7);
+}
+
+.card-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 64px;
+    color: white;
+    font-size: 30px;
+    margin: 0 auto;
+}
+
+.nav-item img {
+    height: 30px;
+}

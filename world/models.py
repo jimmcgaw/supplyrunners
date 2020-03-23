@@ -8,4 +8,4 @@ class UserLocation(models.Model):
         on_delete=models.CASCADE,
         related_name='locations',
         related_query_name='location')
-    google_place_id = models.CharField(max_length=512)
+    google_place_id = models.CharField(max_length=512, db_index=True)
