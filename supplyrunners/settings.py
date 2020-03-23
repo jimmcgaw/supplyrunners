@@ -20,12 +20,19 @@ load_dotenv()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DEBUG = False
 
-try:
-    from .local_settings import *
-except:
-    pass
+GMAP_API_KEY = os.environ.get('GMAP_API_KEY', None)
+
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('SOCIAL_AUTH_FACEBOOK_KEY', None)
+
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET', None)
+
+SECRET_KEY = os.environ.get('SECRET_KEY', None)
+
+VAR_FOR_TESTING = os.environ.get('VAR_FOR_TESTING', None)
+
+DEBUG = os.environ.get('DJANGO_DEBUG', False)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
