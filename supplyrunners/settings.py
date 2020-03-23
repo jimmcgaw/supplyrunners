@@ -166,9 +166,6 @@ PUBLIC_ROOT = os.path.join(BASE_DIR, 'public')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-VAR_FOR_TESTING = 'local'
-
-
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
