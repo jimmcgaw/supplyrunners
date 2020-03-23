@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # third-party stuff
     'social_django',
     "sslserver",
+    "django_extensions",
     # our custom apps
     'world',
 ]
@@ -59,10 +60,10 @@ INSTALLED_APPS = [
 # for social_django app
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'locations'
-LOGOUT_URL = 'logout'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'user:login'
+LOGIN_REDIRECT_URL = 'profile'
+LOGOUT_URL = 'user:logout'
+LOGOUT_REDIRECT_URL = 'user:login'
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link'] # add this
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       # add this
