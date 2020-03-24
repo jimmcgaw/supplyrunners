@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Account Settings</h1>
+
+    <div class="row py-3 delete-initiate">
+        <a href="#" class="btn btn-danger">Delete my Account</a>
+    </div>
+    <div class="row py-3 delete-confirm" style="display: none;">
+        <form action="." method="post">
+            <div class="form-group">
+                <label for="confirmtext">Type "confirm" in the textbox to confirm deletion of your account:</label>
+                <input type="text" class="form-control" id="confirmtext" aria-describedby="confirmText" placeholder="Enter 'confirm'">
+                <small id="confirmText" class="form-text text-muted">This action cannot be undone.</small>
+            </div>
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block bottomscripts %}
+    <script>
+        $(function(){
+            var deleteInitiate = $('.delete-initiate');
+            var deleteConfirm = $('.delete-confirm');
+            deleteInitiate.find('a').on('click', function(e){
+                e.preventDefault();
+                deleteInitiate.slideToggle();
+                deleteConfirm.slideToggle();
+            });
+        });
+    </script>
+{% endblock %}

@@ -6,19 +6,28 @@ body {
     color: #333;
 }
 
-a.btn {
+a.btn, button.btn {
     border-radius: 50px;
     padding: .5rem 2rem;
     transition-duration: 0.2s;
     transition-property: transform;
 }
 
-a.btn:hover {
+a.btn:hover, button.btn:hover {
     transform: translate(0px, -3px);
 }
 
 .site-content {
     margin-top: 75px;
+}
+
+.qna .question {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.qna .answer {
+    font-style: italic;
 }
 
 header .container {
@@ -27,20 +36,27 @@ header .container {
 
 header .resources {
     background-color: white;
-    opacity: 0.65;
+    opacity: 0.75;
 }
 
 header .homebox {
     padding: 15px;
     border-radius: 5px;
+    font-size: 1.2rem;
 }
 
-header a.btn {
+header .welcome a.inline {
+    color: yellow;
+    font-weight:bold;
+}
+
+header a.register-now {
     background-color: #00BA94;
-    box-shadow: #333;
+    color: white;
+    margin-left: 20px;
 }
 
-header a.btn:hover {
+header a.register-now:hover {
     background-color: #00BA94;
 }
 

@@ -19,12 +19,21 @@ def about(request):
     return render(request, 'about.html')
 
 
+def feedback(request):
+    return render(request, 'feedback.html')
+
+
 def terms(request):
     return render(request, 'terms.html')
 
 
 def privacy(request):
     return render(request, 'privacy.html')
+
+
+@login_required
+def account_settings(request):
+    return render(request, 'settings.html')
 
 
 @login_required
