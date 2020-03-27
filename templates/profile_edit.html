@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load usertags %}
+
+{% block content %}
+    <h1>Account Details</h1>
+
+    <form action="{% url 'profile_edit' %}" method="post" class="profile">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Tell us about yourself</legend>
+            
+            <div class="errors">
+                {{ form.non_field_errors }}
+            </div>
+    
+            <div class="form-group row">
+                <label for="{{ form.kind.id_for_label }}" class="col-form-label col-sm-4">Which type of user are you?</label>
+                <div class="col-sm-8">
+                    {% if form.kind.errors %}
+                    <div class="errors">
+                        {{ form.kind.errors }}
+                    </div>
+                    {% endif %}
+                    {{ form.kind }}
+                </div>
+            </div>
+    
+            <div class="form-group row">
+                <label for="{{ form.display_name.id_for_label }}" class="col-sm-4 col-form-label">Display Name</label>
+                <div class="col-sm-4">
+                    
+                    {% if form.display_name.errors %}
+                    <div class="errors">
+                        {{ form.display_name.errors }}
+                    </div>
+                    {% endif %}
+                    <input type="text" class="form-control" name="{{ form.display_name.html_name }}" id="{{ form.display_name.id_for_label }}" aria-describedby="displayNameHelp" value="{{ form.display_name.value }}">
+                    <small id="displayNameHelp" class="form-text text-muted">{{ form.display_name.help_text }}</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if form.is_publicly_visible.errors %}
+                <div class="errors">
+                    {{ form.is_publicly_visible.errors }}
+                </div>
+                {% endif %}
+                <label for="{{ form.is_publicly_visible.id_for_label }}" class="col-sm-4 col-form-label">Show me to other users?</label>
+                <div class="col-sm-4">
+
+                    {{ form.is_publicly_visible }}
+                    <small class="form-text text-muted">Uncheck this if you want to hide yourself from other users.</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if form.contact_preference.errors %}
+                <div class="errors">
+                    {{ form.contact_preference.errors }}
+                </div>
+                {% endif %}
+                <label for="{{ form.contact_preference.id_for_label }}" class="col-sm-4 col-form-label">Contact type preference</label>
+                <div class="col-sm-4">
+
+                    {{ form.contact_preference }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if form.contact_details.errors %}
+                <div class="errors">
+                    {{ form.contact_details.errors }}
+                </div>
+                {% endif %}
+                <label for="{{ form.contact_details.id_for_label }}" class="col-sm-4 col-form-label">Enter your email or phone number</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="{{ form.contact_details.html_name }}" id="{{ form.contact_details.id_for_label }}" aria-describedby="contactDetailsHelp" value="{{ form.contact_details.value }}">
+                    <small id="contactDetailsHelp" class="form-text text-muted">{{ form.contact_details.help_text }}</small>
+                </div>
+            </div>
+
+            <div class="row text-right">
+                <div class="col-sm-8">
+
+                    <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save Profile</button>
+                </div>
+            </div>
+
+        </fieldset>
+        
+    </form>
+{% endblock %}

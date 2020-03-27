@@ -6,6 +6,23 @@ body {
     color: #333;
 }
 
+div.errors {
+    font-weight: bold;
+    color: #663399;
+}
+
+form.profile ul {
+    list-style: none;
+}
+
+form.profile button.btn-primary {
+    margin-left: 15px;
+}
+
+form.profile ul {
+    padding-inline-start: 0px;
+}
+
 a.btn, button.btn {
     border-radius: 50px;
     padding: .5rem 2rem;
@@ -42,7 +59,6 @@ header .resources {
 header .homebox {
     padding: 15px;
     border-radius: 5px;
-    font-size: 1.2rem;
 }
 
 header .welcome a.inline {
