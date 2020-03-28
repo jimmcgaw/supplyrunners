@@ -18,10 +18,10 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h2>Search</h2>
+            <h2>Add Locations</h2>
             <form action="{% url 'locations_search' %}" id="search">
                 <div class="form-group mb-2">
-                    <input class="form-control" type="search" name="query" id="query" aria-describedby="locationQueryText"  placeholder="stores by name & city">
+                    <input class="form-control" type="search" name="query" id="query" aria-describedby="locationQueryText"  placeholder="search stores by name, city, zip">
                     <small id="locationQueryText" class="form-text text-muted">
                         (e.g. "Albertson's, Tucson, AZ" or "Kroger, 48098")
                     </small>
@@ -52,7 +52,7 @@
 
                     <div id="my-locations"></div>
 
-                    <div id="search-throbber" class="spinner-border" role="status" style="display:none;">
+                    <div id="my-locations-throbber" class="spinner-border" role="status" style="display:none;">
                         <span class="sr-only">Loading...</span>
                     </div>
                     <div id="my-locations-empty" style="display: none;">
@@ -80,7 +80,7 @@
                         <input class="place_id" type="hidden" name="place_id">
                     </div>
                     <div class="col-sm-2">
-                        <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                        <button type="submit" class="btn btn-secondary btn-sm">Add</button>
                     </div>
                 </form>
 
@@ -90,9 +90,21 @@
 
     <template id="location-template">
         <div class="row location">
+            <div class="col-sm-10">
+                <div class="name"></div>
+                <div class="address"></div>
+            </div>
+            <div class="col-sm-2">
+                <form action="/locations/delete/" method="post">
+                    {% csrf_token %}
+                    <input class="place_id" type="hidden" name="place_id">
+                    <button type="submit" class="btn btn-small btn-outline-secondary">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </button>
+                </form>
+            </div>
 
-            <div class="name"></div>
-            <div class="address"></div>
+            
 
         </div>
     </template>

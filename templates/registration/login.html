@@ -9,6 +9,30 @@
 
 <h1>Login</h1>
 
+<div class="row">
+    <div class="col-md-12">
+
+        <p>
+            This site is meant to be peer-to-peer, connecting individuals with each other,
+            instead of going through an organization or charity that is designed to 
+            help at-risk individuals during the crisis.
+        </p>
+        <p>
+            Before registering, we encourage you to explore available assistance and volunteer
+            opportunities with the many national organizations like
+            <a href="https://www.mealsonwheelsamerica.org/" target="_blank">Meals on Wheels</a> and other
+            <a href="https://www.google.com/search?q=food+banks+near+me" target="_blank">local organizations</a> 
+            which are devoted to helping people during this crisis.
+        </p>
+        <p>
+            If you register for this site, you agree to the 
+            <a href="{% url 'terms' %}">Terms & Conditions</a>, as well as to be vigilant about following the 
+            <a href="https://www.cdc.gov/coronavirus/2019-nCoV/index.html" target="_blank">CDC.gov recommendations</a> about how to protect
+            yourself and others.
+        </p>
+    </div>
+</div>
+
 <div class="expanded button-group">
     <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-lg">Login with Facebook</a>
 </div>

@@ -7,7 +7,8 @@
         <a href="#" class="btn btn-danger">Delete my Account</a>
     </div>
     <div class="row py-3 delete-confirm" style="display: none;">
-        <form action="." method="post">
+        <form action="{% url 'delete_account' %}" method="post">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="confirmtext">Type "confirm" in the textbox to confirm deletion of your account:</label>
                 <input type="text" class="form-control" id="confirmtext" aria-describedby="confirmText" placeholder="Enter 'confirm'">
@@ -15,6 +16,17 @@
             </div>
             <button type="submit" class="btn btn-danger">Confirm Delete</button>
         </form>
+    </div>
+    <div class="row delete-success" style="display: none;">
+        <div class="alert alert-success" role="alert">
+            Your account has been successfully deleted.
+        </div>
+    </div>
+
+    <div class="row delete-error" style="display: none;">
+        <div class="alert alert-danger" role="alert">
+            There was an error deleting your account. Please try your request again later.
+        </div>
     </div>
 {% endblock %}
 
@@ -25,11 +37,51 @@
         $(function(){
             var deleteInitiate = $('.delete-initiate');
             var deleteConfirm = $('.delete-confirm');
-            deleteInitiate.find('a').on('click', function(e){
+            deleteInitiate.off('click').on('click', 'a', function(e){
                 e.preventDefault();
-                deleteInitiate.slideToggle();
-                deleteConfirm.slideToggle();
+                deleteInitiate.hide();
+                deleteConfirm.show();
+                $('#delete-success').hide();
             });
+
+            function onDeleteSuccess(data){
+                if (data.status === 'success'){
+                    deleteConfirm.hide();
+                    $('#delete-success').show();
+                } else if (data.status === 'error') {
+                    $('#delete-error').show();
+                }
+            }
+
+            function onDeleteError(data){
+                console.error('error deleting account')
+                console.error(data);
+
+                $('#delete-error').show();
+            }
+
+            deleteConfirm.off('submit').on('submit', 'form', function(e){
+                e.preventDefault();
+
+                if ($('#confirmtext').val() !== 'confirm'){
+                    return;
+                }
+
+
+                var form = $(e.target);
+                var url = form.attr('action');
+                var method = form.attr('method');
+                var params = {
+                    'csrfmiddlewaretoken': form.find('[name="csrfmiddlewaretoken"]').val()
+                };
+                $.ajax(url, {
+                    data: params,
+                    method: method,
+                    success: onDeleteSuccess,
+                    error: onDeleteError
+                });
+            });
+
         });
     </script>
 {% endblock %}

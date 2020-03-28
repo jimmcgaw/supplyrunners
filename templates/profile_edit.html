@@ -5,10 +5,12 @@
 {% block content %}
     <h1>Account Details</h1>
 
+    <div class="row py-3">
+    </div>
+
     <form action="{% url 'profile_edit' %}" method="post" class="profile">
         {% csrf_token %}
         <fieldset>
-            <legend>Tell us about yourself</legend>
             
             <div class="errors">
                 {{ form.non_field_errors }}

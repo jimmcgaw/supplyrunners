@@ -2,13 +2,47 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-6">
-            <h1>My Profile</h1>
-        </div>
-        <div class="col-md-6 text-right">
-            <a href="{% url 'profile_edit' %}" class="btn btn-primary">
-                Edit Profile  <ion-icon name="pencil-outline"></ion-icon>
-            </a>
+      
+      <div class="col-md-12">
+          <h1>My Profile</h1>
+
+          <div class="py-3"></div>
+
+            <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                        <div>Display Name: {{ user_profile.display_name }}</div>
+                        <div>Is profile visible: {{ user_profile.is_publicly_visible }}</div>
+                        <div>Contact Details: {{ user_profile.contact_details }}</div>
+                    </td>
+                    <td>
+                        <a href="{% url 'profile_edit' %}" class="btn btn-outline-primary">
+                            Edit Profile  <ion-icon name="pencil-outline"></ion-icon>
+                        </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <div>You have set {{ location_count }} location{{ location_count|pluralize }}.</div>
+                    </td>
+                    <td>
+                      <a href="{% url 'locations' %}" class="btn btn-outline-primary">
+                        Edit Locations  <ion-icon name="pencil-outline"></ion-icon>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <a href="{% url 'account_settings' %}" class="btn btn-outline-primary">
+                        Manage My Account  <ion-icon name="pencil-outline"></ion-icon>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
         </div>
     </div>
 {% endblock %}

@@ -29,6 +29,8 @@ var locationModal = $('#locationModal');
 
 // my locations
 var myLocations = $('#my-locations');
+var myLocationsEmpty = $('#my-locations-empty');
+var myLocationsLoading = $('#my-locations-throbber');
 
 
 function createLocationResultElement(data){
@@ -46,6 +48,7 @@ function createLocationElement(data) {
     var clone = locationTemplate.clone().contents();
     clone.find('.name').text(data.name)
     clone.find('.address').text(data.address)
+    clone.find('.place_id').val(data.place_id)
     return clone;
 }
 
@@ -111,9 +114,14 @@ searchForm.off('submit').on('submit', function(e){
 
 
 function onLocationLoadSuccess(data) {
-    data.locations.map(createLocationElement).forEach(function(locationElement){
-        myLocations.append(locationElement);
-    })
+    myLocationsLoading.hide();
+    if (data.locations.length === 0){
+        myLocationsEmpty.show();
+    } else {
+        data.locations.map(createLocationElement).forEach(function(locationElement){
+            myLocations.append(locationElement);
+        });
+    }
 }
 
 
@@ -135,10 +143,35 @@ results.off('submit').on('submit', '.location-result form', function(e){
     $.ajax(url, {
         data: params,
         method: method,
-        success: onLocationLoadSuccess,
+        success: loadMyLocations,
         error: onLocationLoadError
     });
 });
+
+
+function onDeleteLocationError(e){
+    console.error('Error deleting location');
+    console.error(e);
+}
+
+
+myLocations.off('submit').on('submit', '.location form', function(e){
+    e.preventDefault();
+
+    var form = $(e.target);
+    var url = form.attr('action');
+    var method = form.attr('method');
+    var params = {
+        'place_id': form.find('input.place_id').val(),
+        'csrfmiddlewaretoken': form.find('[name="csrfmiddlewaretoken"]').val()
+    };
+    $.ajax(url, {
+        data: params,
+        method: method,
+        success: loadMyLocations,
+        error: onDeleteLocationError
+    });
+})
 
 
 function onLocationSuccess(position){
@@ -168,16 +201,25 @@ if (!Cookies.get('location-checked')){
     }
 }
 
+function clearMyLocations() {
+    myLocations.html('');
+}
 
+function loadMyLocations(){
+    clearMyLocations();
+    myLocationsLoading.show();
+    myLocationsEmpty.hide();
 
-$(document).ready(function(){
     $.ajax('/locations/', 
         {
-            success: onLocationLoadSuccess
+            success: onLocationLoadSuccess,
+            error: onLocationLoadError
         }
     );
+}
 
-})
+loadMyLocations();
+
 
 // end $(function(){})
 }

@@ -25,4 +25,4 @@ class UserProfileForm(forms.ModelForm):
     contact_preference = forms.ChoiceField(choices=CONTACT_PREFERENCE_CHOICES, required=True)
 
     contact_details = forms.CharField(required=True,
-        help_text="An email or phone number at which people may reach you. (This will be hidden behind a reCAPTCHA so bots cannot scrape it.)")
+        help_text="An email or phone number at which people may reach you.")

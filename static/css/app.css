@@ -34,9 +34,20 @@ a.btn:hover, button.btn:hover {
     transform: translate(0px, -3px);
 }
 
-.location-result a.btn, .location-result button {
-    border-radius: inherit;
+.location {
+    border-bottom: solid 1px #dddddd;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.location-result a.btn,
+.location-result button{
     padding: inherit;
+}
+
+.location form button,
+.location form a.btn {
+    padding: 5px 15px;
 }
 
 .site-content {
@@ -98,4 +109,8 @@ header a.register-now:hover {
 
 .nav-item img {
     height: 30px;
+}
+
+td.profile-pic img {
+    height: 50px;
 }

@@ -11,7 +11,10 @@ urlpatterns = [
     path('profile/edit/', views.profile_edit, name='profile_edit'),
     path('settings/', views.account_settings, name='account_settings'),
     path('locations/', views.locations, name='locations'),
+    path('connections/', views.connections, name='connections'),
+    path('locations/delete/', views.locations_delete, name='locations_delete'),
     path('locations/search/', views.locations_search, name='locations_search'),
     path('terms-of-use/', views.terms, name='terms'),
     path('privacy-policy/', views.privacy, name='privacy'),
+    path('account/delete/', views.delete_account, name='delete_account'),
 ]

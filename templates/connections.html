@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load usertags %}
+
+{% block content %}
+    <div class="row">
+      
+      <div class="col-md-12">
+          <h1>Users Near Me</h1>
+
+          <div class="py-3"></div>
+
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Name</th>
+                        <th></th>
+                        <th>Contact Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in connected_users %}
+                    <tr>
+                        <td>{{ user.profile.display_name }}</td>
+                        <td class="profile-pic"><img src="{{ user|profile_pic_url }}" alt=""></td>
+                        <td>{{ user.profile.contact_details }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">
+                            There are no users around you yet.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+{% endblock %}

@@ -37,7 +37,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', False)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shopforsheltered.com']
 
 
 # Application definition

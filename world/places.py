@@ -27,8 +27,4 @@ def get_place_details(place_id):
         'key': settings.GMAP_API_KEY,
         'place_id': place_id
     }
-    details = requests.get(PLACE_DETAILS_BASE_URL, params=params).json()
-    return {
-        'name': details['result']['name'],
-        'address': details['result']['formatted_address']
-    }
+    return requests.get(PLACE_DETAILS_BASE_URL, params=params).json()
