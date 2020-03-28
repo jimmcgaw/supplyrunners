@@ -65,7 +65,7 @@ LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_URL = 'user:logout'
 LOGOUT_REDIRECT_URL = 'user:login'
 
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link'] # add this
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email'] # add this
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       # add this
   'fields': 'id, name, email, picture.type(large), link'
 }
