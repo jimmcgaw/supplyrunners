@@ -8,8 +8,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .forms import UserProfileForm
-from .models import UserProfile
-from .places import find_places
+from .models import UserProfile, UserLocation
+from .places import find_places, get_place_details
 
 
 # Create your views here.
@@ -82,29 +82,36 @@ def profile_edit(request):
     return render(request, 'profile_edit.html', {'form': form})
 
 
+def _location_data(place_id):
+    return get_place_details(place_id)
+
+
+def _get_location_data(place_ids):
+    return {
+        'locations': [i for i in map(_location_data, place_ids)]
+    }
+
+
 @login_required
 def locations(request):
-    # raise Exception(dir(request.user))
-    # raise Exception(dir(request.user.social_auth))
-    # raise Exception(request.user.id)
-    return render(request, 'locations.html', {'map_key': settings.GMAP_API_KEY})
+    if request.is_ajax():
+        if request.method == 'POST':
+            place_id = request.POST.get('place_id')
+            request.user.locations.get_or_create(google_place_id=place_id, user=request.user)
+        location_place_ids = [location.google_place_id for location in request.user.locations.all()]
+        location_data = _get_location_data(location_place_ids)
+        return JsonResponse(location_data)
+
+    return render(request, 'locations.html')
 
 
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
 
 @login_required
 def locations_search(request):
     if not request.GET.get('q'):
         return JsonResponse({})
 
-    lat = request.GET.get('lat')
-    long = request.GET.get('long')
-    ip_address = get_client_ip(request)
-    places_json = find_places(request.GET.get('q'), lat=lat, long=long, ip_address=ip_address)
+    lat = request.GET.get('latitude')
+    long = request.GET.get('longitude')
+    places_json = find_places(request.GET.get('q'), lat=lat, long=long)
     return JsonResponse(places_json)

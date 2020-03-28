@@ -41,13 +41,13 @@
             </div>
 
             <div class="form-group row">
-                {% if form.is_publicly_visible.errors %}
-                <div class="errors">
-                    {{ form.is_publicly_visible.errors }}
-                </div>
-                {% endif %}
                 <label for="{{ form.is_publicly_visible.id_for_label }}" class="col-sm-4 col-form-label">Show me to other users?</label>
                 <div class="col-sm-4">
+                    {% if form.is_publicly_visible.errors %}
+                    <div class="errors">
+                        {{ form.is_publicly_visible.errors }}
+                    </div>
+                    {% endif %}
 
                     {{ form.is_publicly_visible }}
                     <small class="form-text text-muted">Uncheck this if you want to hide yourself from other users.</small>
@@ -55,26 +55,26 @@
             </div>
 
             <div class="form-group row">
-                {% if form.contact_preference.errors %}
-                <div class="errors">
-                    {{ form.contact_preference.errors }}
-                </div>
-                {% endif %}
                 <label for="{{ form.contact_preference.id_for_label }}" class="col-sm-4 col-form-label">Contact type preference</label>
                 <div class="col-sm-4">
+                    {% if form.contact_preference.errors %}
+                    <div class="errors">
+                        {{ form.contact_preference.errors }}
+                    </div>
+                    {% endif %}
 
                     {{ form.contact_preference }}
                 </div>
             </div>
 
             <div class="form-group row">
-                {% if form.contact_details.errors %}
-                <div class="errors">
-                    {{ form.contact_details.errors }}
-                </div>
-                {% endif %}
                 <label for="{{ form.contact_details.id_for_label }}" class="col-sm-4 col-form-label">Enter your email or phone number</label>
                 <div class="col-sm-4">
+                    {% if form.contact_details.errors %}
+                    <div class="errors">
+                        {{ form.contact_details.errors }}
+                    </div>
+                    {% endif %}
                     <input type="text" class="form-control" name="{{ form.contact_details.html_name }}" id="{{ form.contact_details.id_for_label }}" aria-describedby="contactDetailsHelp" value="{{ form.contact_details.value }}">
                     <small id="contactDetailsHelp" class="form-text text-muted">{{ form.contact_details.help_text }}</small>
                 </div>

@@ -34,6 +34,11 @@ a.btn:hover, button.btn:hover {
     transform: translate(0px, -3px);
 }
 
+.location-result a.btn, .location-result button {
+    border-radius: inherit;
+    padding: inherit;
+}
+
 .site-content {
     margin-top: 75px;
 }

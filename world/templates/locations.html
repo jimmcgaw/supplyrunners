@@ -2,41 +2,135 @@
 
 {% block content %}
     <h1>Locations</h1>
-    <div class="grid-x grid-padding-x grid-margin-y">
-        <div class="cell large-6 medium-6">
-            <div id="map" style="height: 400px;"></div>
-            <hr>
-            <form action="/locations/search" id="search">
-                <div class="input-group">
-                    <label for="query" class="input-group-label">Search</label>
-                    <input class="input-group-field" type="search" name="query" id="query" placeholder="enter search text">
-                    <div class="input-group-button">
-                        <input type="submit" class="button" value="Go">
-                    </div>
-                </div>
-            </form>
-            <div id="results"></div>
-        </div>
-        <div class="cell large-6 medium-6">
-            <h2>My Locations</h2>
-            <div id="my-locations"></div>
+
+    <div class="row py-3">
+        <div class="col-md-12">
+
+            <p>
+                Specify up to five stores that you frequent. This are the locations we will use
+                to pair you up with other users close to you.
+            </p>
+            <p>
+    
+            </p>
         </div>
     </div>
 
-    <template id="locationtemplate">
-        <div class="location">
-            <div class="name"></div>
-            <div class="details">
-                <span class="address"></span>
-                <span class="place_id"></span>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Search</h2>
+            <form action="{% url 'locations_search' %}" id="search">
+                <div class="form-group mb-2">
+                    <input class="form-control" type="search" name="query" id="query" aria-describedby="locationQueryText"  placeholder="stores by name & city">
+                    <small id="locationQueryText" class="form-text text-muted">
+                        (e.g. "Albertson's, Tucson, AZ" or "Kroger, 48098")
+                    </small>
+                </div>
+                <div id="search-throbber" class="spinner-border" role="status" style="display:none;">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                <div id="search-button">
+                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                </div>
+            </form>
+            <hr>
+            <div id="results-wrapper">
+                <div id="results"></div>
+                <div id="results-error" class="error" style="display: none;">
+                    Error loading results.
+                </div>
+                <div id="results-empty" style="display: none;">
+                    No results found.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2>My Locations</h2>
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div id="my-locations"></div>
+
+                    <div id="search-throbber" class="spinner-border" role="status" style="display:none;">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div id="my-locations-empty" style="display: none;">
+                        You have no locations. Add one using the form at the right.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template id="location-result-template">
+        <div class="row location-result">
+            <div class="col-sm-8">
+
+                <div class="name"></div>
+                <div class="address"></div>
+
+            </div>
+            <div class="col-sm-4">
+                
+                <form action="{% url 'locations' %}" method="post">
+                    {% csrf_token %}
+                    <div class="col-md-10">
+                        <input class="place_id" type="hidden" name="place_id">
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </template>
+
+    <template id="location-template">
+        <div class="row location">
+
+            <div class="name"></div>
+            <div class="address"></div>
+
+        </div>
+    </template>
+
+    <!-- Modal -->
+<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Current Location</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>
+                The browser will ask for your permission to get your current location.
+                We will NOT store this information on our systems. This will only be used
+                to help find stores closest to you.
+            </p>
+            <p>
+                If you're not comfortable sharing this, the site will still work.
+            </p>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
     
     {% block bottomscripts %}
     <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/static/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/node_modules/js-cookie/src/js.cookie.js"></script>
     <script src="/static/js/locations.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ map_key }}&callback=initMap" async defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ map_key }}&callback=initMap" async defer></script> -->
     {% endblock %}
 
 {% endblock %}
