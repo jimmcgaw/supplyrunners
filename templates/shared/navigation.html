@@ -26,9 +26,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
                     </li>
-                    <li class="nav-item">
-                        &nbsp;&nbsp;&nbsp;&nbsp;<img src="{{ request.user|profile_pic_url }}" alt="">
-                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'user:login' %}">Login</a>

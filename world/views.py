@@ -58,14 +58,6 @@ def profile(request):
     })
 
 
-def _get_user_social_name(user):
-    return user.social_auth.extra()[0].extra_data['name']
-
-
-def _get_user_social_email(user):
-    return user.social_auth.extra()[0].extra_data['email']
-
-
 @login_required
 def profile_edit(request):
     user_profile = UserProfile.objects.get(user=request.user)
@@ -81,10 +73,8 @@ def profile_edit(request):
             return redirect(reverse('profile'))
     else:
         initial_data = {}
-        if not user_profile.display_name:
-            initial_data['display_name'] = _get_user_social_name(request.user)
         if not user_profile.contact_details:
-            initial_data['contact_details'] = _get_user_social_email(request.user)
+            initial_data['contact_details'] = request.user.social_auth.get().uid
 
         form = UserProfileForm(instance=user_profile, initial=initial_data)
     return render(request, 'profile_edit.html', {'form': form})
@@ -152,7 +142,7 @@ def _get_connected_users(user):
     place_ids = [location.google_place_id for location in user.locations.all()]
     locations = UserLocation.objects.filter(google_place_id__in=place_ids)
     user_ids = set([location.user_id for location in locations])
-    
+
     user_ids.discard(user.id)
 
     return User.objects.filter(id__in=user_ids,
