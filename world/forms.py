@@ -26,3 +26,6 @@ class UserProfileForm(forms.ModelForm):
 
     contact_details = forms.CharField(required=True,
         help_text="An email or phone number at which people may reach you.")
+    
+    description = forms.CharField(required=True, widget=forms.Textarea(),
+    help_text="If a volunteer, briefly describe what you are willing to do. If a resident seeking volunteer assistance, describe what kind of help you are looking for.")

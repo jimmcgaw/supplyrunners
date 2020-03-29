@@ -45,6 +45,7 @@ class UserProfile(models.Model):
         blank=True
     )
     contact_details = models.CharField(max_length=255, blank=True)
+    description = models.TextField(default='', blank=True)
 
 
 @receiver(post_save, sender=User)

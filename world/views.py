@@ -129,12 +129,7 @@ def locations_search(request):
     return JsonResponse(places_json)
 
 
-def _get_connected_users(user):
-    if user.profile == UserProfile.VOLUNTEER:
-        query_profile_kind = UserProfile.SHELTERED
-    else:
-        query_profile_kind = UserProfile.VOLUNTEER
-
+def _get_local_users(user, kind_to_connect):
     place_ids = [location.google_place_id for location in user.locations.all()]
     locations = UserLocation.objects.filter(google_place_id__in=place_ids)
     user_ids = set([location.user_id for location in locations])
@@ -142,23 +137,29 @@ def _get_connected_users(user):
     user_ids.discard(user.id)
 
     return User.objects.filter(id__in=user_ids,
-        profile__kind=query_profile_kind, profile__is_publicly_visible=True)
+        profile__kind=kind_to_connect, profile__is_publicly_visible=True)
 
 
 @login_required
-def connections(request):
+def local_users(request):
     user_profile = request.user.profile
     if not user_profile.kind:
         return redirect(reverse('profile_edit'))
 
+    is_volunteer = request.user.profile.kind == UserProfile.VOLUNTEER
+    if is_volunteer:
+        kind_to_connect = UserProfile.SHELTERED
+    else:
+        kind_to_connect = UserProfile.VOLUNTEER
+
     location_count = request.user.locations.count()
-    if not location_count:
-        pass
 
-    connected_users = _get_connected_users(request.user)
+    local_users = _get_local_users(request.user, kind_to_connect)
 
-    return render(request, 'connections.html', {
-        'connected_users': connected_users
+    return render(request, 'local-users.html', {
+        'local_users': local_users,
+        'location_count': location_count,
+        'is_volunteer': is_volunteer
     })
 
 

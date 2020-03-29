@@ -3,44 +3,57 @@
 {% block extra_title %} | About{% endblock %}
 
 {% block content %}
-    <h1>About</h1>
 
-    <p>
-        This site was created with a singular mission: to facilitate connecting at-risk 
-        members of the population, who must remain at home, with other residents in close 
-        geographic proximity to them who are willing to purchase food or other essential
-        supplies for them.
-    </p>
+<div class="row qna">
+    
+    <div class="col-md-12 px-5">
+            <h1>About</h1>
+    
+            <p>
+                This site was created with a singular mission: to facilitate connecting at-risk 
+                members of the population, who must remain at home, with other residents in close 
+                geographic proximity to them who are willing to purchase food or other essential
+                supplies for them.
+            </p>
+        
+            <p>
+                The following is some more information in a question / answer format:
+            </p>
+        
+                <p class="question">
+                    Do I exchange money with others on this site?
+                </p>
+                <p class="answer">
+                    No. This site is intended to connect people, not act as a payment 
+                    broker. We expect you to coordinate any financial arrangements with
+                    each other.
+                </p>
+        
+                <p class="question">
+                    Do you store or expose my home address or current location?
+                </p>
+                <p class="answer">
+                    No. The website may ask for your current location or use your IP address,
+                    but only for the purpose of helping you find your local stores. We do not
+                    store this information, nor do we expose it to others.
+                </p>
+        
+                <p class="question">
+                    Do I communicate with other users through this site?
+                </p>
+                <p class="answer">
+                    No. You can opt to be contacted via your email address or via a phone number 
+                    that you provide. When you make yourself visible to registered users on this site,
+                    those in your neighborhood can reach out to you via the contact means you specify.
+                </p>
 
-    <p>
-        The following is some more information in a question / answer format:
-    </p>
+        </div>
 
-    <div class="qna">
-        <p class="question">
-            Do I exchange money with others on this site?
-        </p>
-        <p class="answer">
-            No. This site is intended to connect people, not act as a payment 
-            broker. We expect you to coordinate any financial arrangements with
-            each other.
-        </p>
+    </div>
 
-        <p class="question">
-            Do you store or expose my home address or current location?
-        </p>
-        <p class="answer">
-            No. The website may ask for your current location or grab your IP address,
-            but we do not store this information, nor do we expose it to others.
-        </p>
-
-        <p class="question">
-            Do I communicate with other users through this site?
-        </p>
-        <p class="answer">
-            No. You can opt to be contacted via your email address or via a phone number 
-            that you provide. When you make yourself visible to registered users on this site,
-            those in your neighborhood can reach out to you via the contact means you specify.
-        </p>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a class="btn btn-primary" href="{% url 'user:login' %}">Sign Up or Log In</a>
+        </div>
     </div>
 {% endblock %}

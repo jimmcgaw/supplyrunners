@@ -13,6 +13,14 @@
             <table class="table">
                 <tbody>
                   <tr>
+                    <td>Find Local Users</td>
+                    <td>
+                      <a href="{% url 'local_users' %}" class="btn btn-outline-primary">
+                        Connect with Users
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
                     <td>
                         <div>Display Name: {{ user_profile.display_name }}</div>
                         <div>Other users can see me: {{ user_profile.is_publicly_visible }}</div>

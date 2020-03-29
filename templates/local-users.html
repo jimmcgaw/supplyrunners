@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load usertags %}
+
+{% block extra_title %} | Nearby Users{% endblock %}
+
+{% block content %}
+    <div class="row">
+      
+      <div class="col-md-12">
+          <h1>Local {% if is_volunteer %}At-Risk Residents{% else %}Volunteers{% endif %}</h1>
+
+          {% if location_count > 0 %}
+            <div class="row">
+                <div class="alert alert-danger" role="alert">
+                    <p>
+                        You haven't added any locations to your account. You won't be able
+                        to find people close to you until you specify at least one.
+                    </p>
+                    <p>
+                        <a class="btn btn-danger" href="{% url 'locations' %}">Add Locations Now</a>
+                    </p>
+                </div>
+            </div>
+          {% endif %}
+
+          <div class="py-3"></div>
+
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact Details</th>
+                        <th>
+                            {% if is_volunteer %}
+                                Assistance Offered
+                            {% else %}
+                                Assistance Needed
+                            {% endif %}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in local_users %}
+                    <tr>
+                        <td>{{ user.profile.display_name }}</td>
+                        <td>{{ user.profile.contact_details }}</td>
+                        <td>{{ user.profile.description }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">
+                            <p>
+                                There are no users around you yet.
+                            </p>
+                            <p>
+                                We suggest you bookmark this site and check back again later.
+                            </p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+{% endblock %}
