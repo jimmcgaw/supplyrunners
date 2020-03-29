@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
     <h1>Locations</h1>
 
@@ -138,10 +140,10 @@
   </div>
     
     {% block bottomscripts %}
-    <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/static/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/static/node_modules/js-cookie/src/js.cookie.js"></script>
-    <script src="/static/js/locations.js"></script>
+    <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'node_modules/js-cookie/src/js.cookie.js' %}"></script>
+    <script src="{% static 'js/locations.js' %}"></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ map_key }}&callback=initMap" async defer></script> -->
     {% endblock %}
 

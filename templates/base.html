@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% load static %}
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shop for Sheltered{% block extra_title %}{% endblock %}</title>
-    <link rel="stylesheet" href="/static/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" />
     <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/app.css" />
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" />
 
-    <script type="module" src="/static/node_modules/ionicons/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="/static/node_modules/ionicons/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="{% static 'node_modules/ionicons/dist/ionicons/ionicons.esm.js' %}"></script>
+    <script nomodule="" src="{% static 'node_modules/ionicons/dist/ionicons/ionicons.js' %}"></script>
 </head>
 
 <body>
@@ -43,9 +45,9 @@
     {% include "shared/footer.html" %}
 
     {% block bottomscripts %}
-    <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/static/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/static/node_modules/js-cookie/src/js.cookie.js"></script>
+    <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'node_modules/js-cookie/src/js.cookie.js' %}"></script>
     {% endblock %}
 
     {% include "shared/analytics.html" %}
