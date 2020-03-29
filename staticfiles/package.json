@@ -1,0 +1,21 @@
+{
+  "name": "supplyrunners",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "supplyrunners"
+  },
+  "author": "Jim McGaw",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "ionicons": "^5.0.1",
+    "jquery": "^3.4.1",
+    "js-cookie": "^2.2.1"
+  }
+}
