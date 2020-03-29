@@ -72,11 +72,7 @@ def profile_edit(request):
                 return redirect(reverse('locations'))
             return redirect(reverse('profile'))
     else:
-        initial_data = {}
-        if not user_profile.contact_details:
-            initial_data['contact_details'] = request.user.social_auth.get().uid
-
-        form = UserProfileForm(instance=user_profile, initial=initial_data)
+        form = UserProfileForm(instance=user_profile)
     return render(request, 'profile_edit.html', {'form': form})
 
 
@@ -142,7 +138,7 @@ def _get_connected_users(user):
     place_ids = [location.google_place_id for location in user.locations.all()]
     locations = UserLocation.objects.filter(google_place_id__in=place_ids)
     user_ids = set([location.user_id for location in locations])
-
+    
     user_ids.discard(user.id)
 
     return User.objects.filter(id__in=user_ids,
