@@ -6,7 +6,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('kind', 'display_name', 'is_publicly_visible',
-            'contact_preference', 'contact_details')
+            'contact_preference', 'contact_details', 'description')
 
     USER_KIND_CHOICES = (
         (UserProfile.VOLUNTEER, "I'm a resident volunteering to help at-risk residents"),

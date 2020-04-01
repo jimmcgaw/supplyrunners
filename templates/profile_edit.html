@@ -92,7 +92,7 @@
                         {{ form.description.errors }}
                     </div>
                     {% endif %}
-                    <textarea class="form-control" name="{{ form.description.html_name }}" id="{{ form.description.id_for_label }}" aria-describedby="descriptionHelp" value="{{ form.contact_details.value }}"></textarea>
+                    <textarea class="form-control" name="{{ form.description.html_name }}" id="{{ form.description.id_for_label }}" aria-describedby="descriptionHelp" >{{ form.description.value }}</textarea>
                     <small id="descriptionHelp" class="form-text text-muted">{{ form.description.help_text }}</small>
                 </div>
             </div>
